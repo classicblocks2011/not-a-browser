@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Google</title>
+<style>
+/* ====== ESTILO TIPO GOOGLE ====== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #202124;
+  color: #e8eaed;
+  text-align: center;
+  padding-top: 60px;
+}
+input {
+  padding:12px 20px;
+  font-size:16px;
+  border-radius:4px;
+  border:1px solid #5f6368;
+  outline:none;
+  width:300px;
+  text-align:center;
+  margin-bottom:15px;
+}
+button {
+  padding:10px 24px;
+  font-size:14px;
+  background:#303134;
+  color:#e8eaed;
+  border:1px solid #303134;
+  border-radius:4px;
+  cursor:pointer;
+}
+button:hover { border-color:#5f6368; }
+
+.logo {
+  font-size:72px;
+  font-weight:500;
+  margin-bottom:30px;
+  letter-spacing:-2px;
+}
+.logo span:nth-child(1){ color:#4285f4; }
+.logo span:nth-child(2){ color:#ea4335; }
+.logo span:nth-child(3){ color:#fbbc05; }
+.logo span:nth-child(4){ color:#4285f4; }
+.logo span:nth-child(5){ color:#34a853; }
+.logo span:nth-child(6){ color:#ea4335; }
+
+.layer-screen { display:none; flex-direction:column; justify-content:center; align-items:center; flex:1; padding:20px; }
+
+</style>
+</head>
+<body>
+
+<!-- ===== LAYER 1 (Index) ===== -->
+<div id="layer1" class="layer-screen" style="display:flex;">
+  <div class="logo">
+    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+  </div>
+  <input type="text" id="searchQuery" placeholder="Busca en Google o escribe un código" />
+  <div>
+    <button onclick="search()">Buscar con Google</button>
+    <button onclick="alert('No hay suerte esta vez...')">Me siento con suerte</button>
+  </div>
+</div>
+
+<!-- ===== LAYER 2 a 10 ===== -->
+<div id="layer2" class="layer-screen">
+  <h1>Layer 2</h1>
+  <p>Acertijo 2: 5 + 7 * 2 = ?</p>
+  <input type="text" id="input2" placeholder="Respuesta..." />
+  <button onclick="checkLayer(2)">Enviar</button>
+</div>
+
+<div id="layer3" class="layer-screen">
+  <h1>Layer 3</h1>
+  <p>Acertijo 3: Completa la serie: A, C, F, J, ?</p>
+  <input type="text" id="input3" placeholder="Respuesta..." />
+  <button onclick="checkLayer(3)">Enviar</button>
+</div>
+
+<div id="layer4" class="layer-screen">
+  <h1>Layer 4</h1>
+  <p>Acertijo 4: 3 + 3 * 3 + 3 = ?</p>
+  <input type="text" id="input4" placeholder="Respuesta..." />
+  <button onclick="checkLayer(4)">Enviar</button>
+</div>
+
+<div id="layer5" class="layer-screen">
+  <h1>Layer 5</h1>
+  <p>Acertijo 5: Binario 01001000 01001001 ¿Qué dice?</p>
+  <input type="text" id="input5" placeholder="Respuesta..." />
+  <button onclick="checkLayer(5)">Enviar</button>
+</div>
+
+<div id="layer6" class="layer-screen">
+  <h1>Layer 6</h1>
+  <p>Acertijo 6: Secuencia Fibonacci: 1,1,2,3,5,8,?</p>
+  <input type="text" id="input6" placeholder="Respuesta..." />
+  <button onclick="checkLayer(6)">Enviar</button>
+</div>
+
+<div id="layer7" class="layer-screen">
+  <h1>Layer 7</h1>
+  <p>Acertijo 7: Escribe la palabra secreta: "Oscuridad"</p>
+  <input type="text" id="input7" placeholder="Respuesta..." />
+  <button onclick="checkLayer(7)">Enviar</button>
+</div>
+
+<div id="layer8" class="layer-screen">
+  <h1>Layer 8</h1>
+  <p>Acertijo 8: Calcula 7*6-4</p>
+  <input type="text" id="input8" placeholder="Respuesta..." />
+  <button onclick="checkLayer(8)">Enviar</button>
+</div>
+
+<div id="layer9" class="layer-screen">
+  <h1>Layer 9</h1>
+  <p>Acertijo 9: Encuentra la letra faltante en la serie: B, D, G, K, ?</p>
+  <input type="text" id="input9" placeholder="Respuesta..." />
+  <button onclick="checkLayer(9)">Enviar</button>
+</div>
+
+<div id="layer10" class="layer-screen">
+  <h1>Layer 10</h1>
+  <p>¡Felicidades! Has llegado al nivel 10. Solo los observadores avanzan.</p>
+</div>
+
+<script>
+// Buscador
+function search() {
+  const q = document.getElementById('searchQuery').value.trim();
+  if(q==='3301') goToLayer(2);
+  else if(q.length>0) window.location.href='https://www.google.com/search?q='+encodeURIComponent(q);
+}
+
+// Enter
+document.getElementById('searchQuery').addEventListener('keypress', function(e){
+  if(e.key==='Enter') search();
+});
+
+// Mostrar capa
+function goToLayer(n){
+  for(let i=1;i<=10;i++){
+    document.getElementById('layer'+i).style.display='none';
+  }
+  document.getElementById('layer'+n).style.display='flex';
+}
+
+// Comprobar respuestas
+function checkLayer(n){
+  let val = document.getElementById('input'+n).value.trim().toLowerCase();
+  let correct=['19','B','15','HI','13','OSCURIDAD','38','N']; // respuestas ejemplo
+  if(val.toUpperCase()===correct[n-2]) goToLayer(n+1);
+  else alert('Incorrecto, intenta de nuevo');
+}
+</script>
+</body>
+</html>
