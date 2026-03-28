@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TRUE END</title>
+    <style>
+      body {
+        background: black;
+        color: red;
+        font-family: monospace;
+        text-align: center;
+        padding-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="msg">YOU MADE IT</h1>
+
+    <script>
+      let text = [
+        'this was never a game',
+        'you followed every step',
+        'we have your attention',
+        'welcome',
+      ]
+
+      let i = 0
+      setInterval(() => {
+        document.getElementById('msg').textContent = text[i % text.length]
+        i++
+      }, 2000)
+
+      setTimeout(() => {
+        document.body.innerHTML = '<h1>CONNECTION LOST</h1>'
+      }, 10000)
+    </script>
+  </body>
+</html>
