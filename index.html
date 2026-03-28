@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #202124;
+        color: #e8eaed;
+      }
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 10px 20px;
+        gap: 15px;
+      }
+      .header a {
+        color: #e8eaed;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      .header a:hover {
+        text-decoration: underline;
+      }
+      .header button {
+        background: #8ab4f8;
+        color: #202124;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .header button:hover {
+        background: #aecbfa;
+      }
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .logo {
+        font-size: 72px;
+        font-weight: 500;
+        margin-bottom: 30px;
+        letter-spacing: -2px;
+      }
+      .logo span:nth-child(1) {
+        color: #4285f4;
+      }
+      .logo span:nth-child(2) {
+        color: #ea4335;
+      }
+      .logo span:nth-child(3) {
+        color: #fbbc05;
+      }
+      .logo span:nth-child(4) {
+        color: #4285f4;
+      }
+      .logo span:nth-child(5) {
+        color: #34a853;
+      }
+      .logo span:nth-child(6) {
+        color: #ea4335;
+      }
+      .search-box {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 24px;
+        padding: 8px 16px;
+        width: 100%;
+        max-width: 584px;
+        box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+      }
+      .search-box svg {
+        width: 20px;
+        height: 20px;
+        fill: #9aa0a6;
+        margin-right: 12px;
+      }
+      .search-box input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        color: #202124;
+        background: transparent;
+      }
+      .search-box:hover {
+        box-shadow: 0 1px 6px rgba(32, 33, 36, 0.4);
+      }
+      .buttons {
+        margin-top: 26px;
+        display: flex;
+        gap: 12px;
+      }
+      .buttons button {
+        background: #303134;
+        color: #e8eaed;
+        border: 1px solid #303134;
+        padding: 10px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .buttons button:hover {
+        border-color: #5f6368;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        font-size: 13px;
+        color: #9aa0a6;
+      }
+      .footer a {
+        color: #9aa0a6;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 600px) {
+        .logo {
+          font-size: 48px;
+        }
+        .search-box {
+          max-width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <a href="#">Gmail</a>
+      <a href="#">Imágenes</a>
+      <button>Acceder</button>
+    </div>
+
+    <div class="main">
+      <div class="logo">
+        <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span
+        ><span>e</span>
+      </div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+        <input
+          type="text"
+          id="searchQuery"
+          placeholder="Busca en Google o escribe una URL"
+        />
+      </div>
+      <div class="buttons">
+        <button onclick="search()">Buscar con Google</button>
+        <button onclick="alert('No hay suerte esta vez...')">
+          Me siento con suerte
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>
+        <a href="#">Sobre Google</a>
+        <a href="#">Publicidad</a>
+        <a href="#">Negocios</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Condiciones</a>
+      </div>
+      <div>
+        <a href="#">Herramientas</a>
+      </div>
+    </div>
+
+    <script>
+      function search() {
+        const q = document.getElementById('searchQuery').value.trim()
+        if (q === '3301') {
+          window.location.href = 'entry.html'
+        } else if (q.length > 0) {
+          window.location.href =
+            'https://www.google.com/search?q=' + encodeURIComponent(q)
+        }
+      }
+
+      document
+        .getElementById('searchQuery')
+        .addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') search()
+        })
+
+      console.log('you_are_being_observed')
+    </script>
+  </body>
+</html>
